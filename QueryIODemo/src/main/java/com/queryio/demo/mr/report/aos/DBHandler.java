@@ -71,7 +71,6 @@ public class DBHandler {
 			}
 		}
 		sb.append(")");
-		System.out.println("Create table query : " + sb.toString());
 		try(PreparedStatement pst = connection.prepareStatement(sb.toString())) {
 			pst.execute();
 		}
@@ -125,12 +124,10 @@ public class DBHandler {
 		for(File file : files) {
 			data.addAll(Files.readAllLines(Paths.get(file.getAbsolutePath()), Charset.forName("UTF-8")));
 		}
-		System.out.println("data size before dummy rows : " + data.size());
 		data = TransformCsvData.makeReportGeneratorCompatible(data, samplingInterval);
 		File ouputFile = new File(dataDirectory.getAbsolutePath() + "/output.txt");
 		ouputFile.createNewFile();
 		Files.write(Paths.get(ouputFile.getAbsolutePath()), data, Charset.forName("utf-8"), StandardOpenOption.TRUNCATE_EXISTING);
-		System.out.println("data size after dummy rows : " + data.size());
 		storeFileInDatabase(data);
 	}
 
@@ -177,8 +174,6 @@ public class DBHandler {
 		record.setSuccessCount(Long.valueOf(token[16]));
 		record.setSuccessPercentage(Double.valueOf(token[17]));
 		
-		System.out.println("record from string : " + record);
-		
 		return record;
 	}
 
@@ -200,7 +195,6 @@ public class DBHandler {
 
 		query.append(") VALUES (").append(valueBuf.toString());
 		query.append(")");
-		System.out.println("Insert query : " + query.toString());
 		pst = connection.prepareStatement(query.toString());
 	}
 	
