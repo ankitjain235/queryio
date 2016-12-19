@@ -84,7 +84,7 @@ public class MapRedOperation {
 		}
 
 		List cmds = new ArrayList();
-		cmds.add("bin/yarn_queryio");
+		cmds.add("bin/yarn");
 		cmds.add("--config");
 		cmds.add("etc/resourcemanager-conf_" + nodeId);
 		cmds.add("jar");
@@ -173,7 +173,7 @@ public class MapRedOperation {
 		}
 
 		List cmds = new ArrayList();
-		cmds.add("bin/yarn_queryio");
+		cmds.add("bin/yarn");
 		cmds.add("--config");
 		cmds.add("etc/resourcemanager-conf_" + nodeId);
 		cmds.add("jar");
